@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form class="form">
+        <label for="price">What is Bitcoin price today?</label><br/>
+        <input type="text" name="price" id="price"><br/>
+        <label for="money">How much $ do you have?</label><br/>
+        <input type="text" name="money" id="money">    
+        <button class="calc">Result</button>
+    </form>
+    <div class="result"></div>
+</body>
+<script>
+    let calc = document.querySelector('.calc');
+    let price = document.querySelector('#price');
+    let money = document.querySelector('#money');
+    let result = document.querySelector('.result');
+
+    calc.addEventListener('click', function(e){
+        e.preventDefault();
+        
+        if(price.value != '' && money.value != ''){
+            let res = money.value / price.value;
+            price.value = money.value = '';
+            result.innerHTML = 'You can buy ' + res.toFixed(4) + ' BTC';
+        }else{
+            result.innerHTML = 'Please input all fields!'
+        }
+    })
+</script>
+<style>
+    body{
+        background: linear-gradient(#e66465, #9198e5);
+        background-repeat: no-repeat;
+        height: 98vh;       
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        width:50%;
+        margin: 0 auto;
+    }
+    label, .result{
+        color: white;
+    }
+    label, input, button, .result {
+        font-size: 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: 600;
+    }
+    input{
+        width:100%;
+        height: 40px;
+        border-radius:10px;
+    }
+    button{
+        margin: 20px auto;
+        width: 120px;
+        height: 40px;
+        border-radius: 10px;
+        border: none;
+        background-color: rgb(42, 142, 236);
+        color: white;
+    }
+    button:active{
+        scale:0.9;
+    }
+    .result{
+        text-align: center;
+    }
+</style>
+</html>
